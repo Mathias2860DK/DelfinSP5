@@ -1,6 +1,6 @@
 package UI;
 
-public class FormandMenu implements UI {
+public class TraenerMenu implements UI{
     @Override
     public void printMenu (){
         System.out.println("1) Vis medlemmer");

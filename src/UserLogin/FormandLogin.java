@@ -1,6 +1,7 @@
 package UserLogin;
 
 import Controller.FormandController;
+import Exeptions.NoSuchMedlemExeption;
 import UserLogin.Login;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ String correctPassword = "formand123";
 String username = "";
 String password = "";
     @Override
-    public void login() throws IOException, SQLException {
+    public void login() throws IOException, SQLException, NoSuchMedlemExeption {
         System.out.println("Hvad er dit brugernavn?");
         username = scanner.nextLine();
         System.out.println("Hvad er dit password?");

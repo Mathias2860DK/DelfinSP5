@@ -1,5 +1,6 @@
 package Controller;
 
+import Exeptions.NoSuchMedlemExeption;
 import Handler.FormandHandler;
 import UI.FormandMenu;
 
@@ -14,7 +15,7 @@ Scanner scanner = new Scanner(System.in);
 int choice = 0;
 int exitValue = 9;
 
-    public void runProgram() throws IOException, SQLException {
+    public void runProgram() throws IOException, SQLException, NoSuchMedlemExeption {
 while (choice != exitValue){
     formandMenu.printMenu();
     choice = scanner.nextInt();
@@ -26,6 +27,7 @@ while (choice != exitValue){
             formandHandler.tilføjMedlem();
             break;
         case 3:
+            formandHandler.fjernMedlem();
 
 
 

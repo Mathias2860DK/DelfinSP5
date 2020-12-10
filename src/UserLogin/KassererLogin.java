@@ -2,6 +2,7 @@ package UserLogin;
 
 import Controller.KassererController;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class KassererLogin implements Login {
@@ -12,7 +13,7 @@ public class KassererLogin implements Login {
     String username = "";
     String password = "";
     @Override
-    public void login() {
+    public void login() throws SQLException {
         System.out.println("Hvad er dit brugernavn?");
         username = scanner.nextLine();
         System.out.println("Hvad er dit password?");

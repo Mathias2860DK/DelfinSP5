@@ -3,13 +3,17 @@ package Handler;
 import Data.EksportData;
 import Data.ImportData;
 import Domain.Medlem;
+import Exeptions.NoSuchMedlemExeption;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Scanner;
+import Connection.JDBCConnector;
 
-public class FormandHandler {
+public class FormandHandler extends MedlemHandler {
 
     public void tilføjMedlem() throws IOException, SQLException {
         Medlem medlem = new Medlem();
@@ -94,5 +98,26 @@ int medlemID = eksportData.saveOrder(medlem);
 ImportData importData = new ImportData();
     public void visMedlemmer() throws SQLException {
         System.out.println(importData.fillListWithData());
+    }
+
+    //tilføj NoSuchMedlemExeption til koden
+    public void fjernMedlem() throws SQLException, NoSuchMedlemExeption {
+        int choice = 0;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Vælg et medlem_id at slette (0 for at forlade) - Se evt 'vis alle medlemmer'");
+        choice = scanner.nextInt();
+        Connection connection = JDBCConnector.getConnection();
+        String sql = "DELETE FROM medlem where medlem_id = " + choice + ";";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+
+
+        if (choice != 0){
+            //getMedlemById(choice);
+            preparedStatement.executeUpdate();
+        }
+
+
+
     }
 }

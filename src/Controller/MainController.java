@@ -1,5 +1,6 @@
 package Controller;
 
+import Exeptions.NoSuchMedlemExeption;
 import UserLogin.FormandLogin;
 import UserLogin.KassererLogin;
 import UserLogin.TraenerLogin;
@@ -15,7 +16,7 @@ public class MainController {
     TraenerLogin traenerLogin = new TraenerLogin();
     int choice = 0;
     Scanner scanner = new Scanner(System.in);
-    public void runProgram() throws IOException, SQLException {
+    public void runProgram() throws IOException, SQLException, NoSuchMedlemExeption {
 
         while (choice != 9) {
             System.out.println("Er du formand tast 1 kassere tast 2 træner tast 3");
