@@ -2,13 +2,14 @@ package Domain;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Comparator;
 
 public class Resultater {
-//medlem_id, stilart_id, result, result_time
-int medlem_id;
-int stilart_id;
-int result;
-Timestamp result_time;
+    //medlem_id, stilart_id, result, result_time
+    int medlem_id;
+    int stilart_id;
+    int result;
+    Timestamp result_time;
 
 
     public Resultater() {
@@ -57,4 +58,16 @@ Timestamp result_time;
     public void setResult_time(Timestamp result_time) {
         this.result_time = result_time;
     }
+
+
+    @Override
+    public String toString() {
+        return "medlem_id: " + medlem_id +
+                ", stilart_id: " + stilart_id +
+                ", result: " + result +
+                ", result_time: " + result_time + "\n";
+    }
+
+
+
 }

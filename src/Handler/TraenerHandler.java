@@ -2,6 +2,7 @@ package Handler;
 
 
 import Data.EksportData;
+import Data.ImportData;
 import Domain.Resultater;
 import UI.TraenerMenu;
 
@@ -9,6 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 import Connection.JDBCConnector;
 
@@ -64,14 +68,16 @@ int milisekunder = 0;
         resultater.setResult_time(timestamp);
 eksportData.saveResult(resultater);
 
-
-
-
-
-
     }
 
-    public void bedsteTræningsResultat() {
+
+
+    public void bedsteTræningsResultat() throws SQLException {
+        ImportData importData = new ImportData();
+        List <Resultater> resultaterList = importData.fillListWithResults();
+//Collections.sort(resultaterList);
+
+        System.out.println(resultaterList);
     }
 
     public void tilføjKonkurrenceResultat() {

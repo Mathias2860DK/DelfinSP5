@@ -98,7 +98,7 @@ int medlemID = eksportData.saveMedlem(medlem);
     }
 ImportData importData = new ImportData();
     public void visMedlemmer() throws SQLException {
-        System.out.println(importData.fillListWithData());
+        System.out.println(importData.fillListWithMembers());
     }
 
     //tilføj NoSuchMedlemExeption til koden
