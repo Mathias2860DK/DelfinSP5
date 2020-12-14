@@ -35,7 +35,7 @@ public class FormandHandler extends MedlemHandler {
         medlem.setName(name);
 
         //sætter gender
-        System.out.println("Er du en mand eller en kvinde? ");
+        System.out.println("Er du en mand eller en kvinde? 1) for mand. 2) for kvinde ");
         medlemChoice = scanner.nextInt();
         if (medlemChoice == 1) {
             medlem.setGender("Mand");

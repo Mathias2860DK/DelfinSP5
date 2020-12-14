@@ -3,10 +3,7 @@ package Handler;
 import Data.ImportData;
 import Domain.Medlem;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 import java.util.Scanner;
 import Connection.JDBCConnector;
@@ -32,8 +29,29 @@ Scanner scanner;
         //select * from medlem where medlem_balance < 0;
 
     }
+public void updateBetaling (int medlemID, int indbetaling){
 
-    public void registrerBetaling() {
+
+}
+
+    public void registrerBetaling() throws SQLException {
+        System.out.println("Vælg medlemID der skal indbetale penge: ");
+        Scanner scanner = new Scanner(System.in);
+        int medlemID = scanner.nextInt();
+        System.out.println("Hvor penge penge vil medlemmet indbetale?");
+        int indbetaling = scanner.nextInt();
+
+        String sql = "select medlem_balance from medlem where medlem_id = " + medlemID +";";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery(sql);
+
+        resultSet.next(); //before start of resultSet
+        int nuværendeMedlemBalance = resultSet.getInt("medlem_balance");
+        int nyBalance = nuværendeMedlemBalance + indbetaling;
+        String sql1 = "Update medlem set medlem_balance = " + nyBalance + " where medlem_id = " + medlemID;
+        preparedStatement = connection.prepareStatement(sql1);
+        preparedStatement.executeUpdate();
 
     }
 }
