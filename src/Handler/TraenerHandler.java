@@ -1,11 +1,14 @@
 package Handler;
 
 
+import Data.EksportData;
+import Domain.Resultater;
 import UI.TraenerMenu;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Scanner;
 import Connection.JDBCConnector;
 
@@ -36,11 +39,36 @@ if (choice != exitValue){
 
 }
 
+    public void tilføjtræningsresultat() throws SQLException {
+        Resultater resultater = new Resultater();
+        EksportData eksportData = new EksportData();
+Scanner scanner = new Scanner(System.in);
+int medlem_id = 0;
+int stilart_id = 0;
+int milisekunder = 0;
+//2016-11-16 06:43:19.77
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis()+32400000); //32 400 000 for at få det til dansk tid.
+        System.out.println("Tilføjer nu et resultat: ");
+        System.out.println("Vælg medlem id: ");
+        medlem_id = scanner.nextInt();
+        resultater.setMedlem_id(medlem_id);
+
+        System.out.println("Vælg stilart_id");
+        stilart_id = scanner.nextInt();
+        resultater.setStilart_id(stilart_id);
+
+        System.out.println("Indtast træningstid i millisekunder: ");
+        milisekunder = scanner.nextInt();
+        resultater.setResult(milisekunder);
+
+        resultater.setResult_time(timestamp);
+eksportData.saveResult(resultater);
 
 
 
 
-    public void tilføjtræningsresultat() {
+
+
     }
 
     public void bedsteTræningsResultat() {

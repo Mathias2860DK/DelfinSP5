@@ -19,6 +19,7 @@ public class FormandHandler extends MedlemHandler {
         Medlem medlem = new Medlem();
         EksportData eksportData = new EksportData();
         String name = "";
+
         int aargang = 0;
         //String medlemsStatus = "";
         //String medlemsGruppe = "";
@@ -91,7 +92,7 @@ public class FormandHandler extends MedlemHandler {
             medlemsBalance -= kontigentPassiv;
             medlem.setMedlemsBalance(medlemsBalance);
         }
-int medlemID = eksportData.saveOrder(medlem);
+int medlemID = eksportData.saveMedlem(medlem);
         medlem.setId(medlemID);
 
     }
