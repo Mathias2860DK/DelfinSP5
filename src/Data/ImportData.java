@@ -24,7 +24,7 @@ public class ImportData {
         Connection connection = JDBCConnector.getConnection();
         statement = connection.createStatement();
         resultSet = statement.executeQuery(sql);
-int lappeLøsning = 0;
+        
         while (resultSet.next()) {
             String navn = resultSet.getString("navn");
             int aargang = resultSet.getInt("aargang");

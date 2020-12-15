@@ -74,7 +74,12 @@ public class Resultater implements Comparable<Resultater> {
 
 
 
+/*public int compareTo(Object obj): It is used to compare the current object with the specified object. It returns
 
+positive integer, if the current object is greater than the specified object.
+negative integer, if the current object is less than the specified object.
+zero, if the current object is equal to the specified object.
+*/
     @Override
     public int compareTo(Resultater o) {
 
