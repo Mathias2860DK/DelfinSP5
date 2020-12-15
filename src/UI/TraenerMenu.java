@@ -19,4 +19,11 @@ public class TraenerMenu implements UI{
         System.out.println("4) Tilføj butterfly");
         System.out.println("9) for exit (ikke flere stilarter skal tilføjes");
     }
+
+    public void printTræningsResultatMenu(){
+        System.out.println("1) Crawl");
+        System.out.println("2) Ryg");
+        System.out.println("3) Bryst");
+        System.out.println("4) Butterfly");
+    }
 }

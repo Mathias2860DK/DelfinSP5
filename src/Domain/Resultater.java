@@ -1,14 +1,12 @@
 package Domain;
 
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.util.Comparator;
 
-public class Resultater {
+public class Resultater implements Comparable<Resultater> {
     //medlem_id, stilart_id, result, result_time
     int medlem_id;
-    int stilart_id;
-    int result;
+    private int stilart_id;
+    private long result;
     Timestamp result_time;
 
 
@@ -20,7 +18,7 @@ public class Resultater {
     }
 
 
-    public Resultater(int medlem_id, int stilart_id, int result, Timestamp result_time) {
+    public Resultater(int medlem_id, int stilart_id, long result, Timestamp result_time) {
         this.medlem_id = medlem_id;
         this.stilart_id = stilart_id;
         this.result = result;
@@ -43,7 +41,7 @@ public class Resultater {
         this.stilart_id = stilart_id;
     }
 
-    public int getResult() {
+    public long getResult() {
         return result;
     }
 
@@ -58,7 +56,13 @@ public class Resultater {
     public void setResult_time(Timestamp result_time) {
         this.result_time = result_time;
     }
+//TODO WHAT
+  /*  public static final Comparator <Resultater> resultComparator = new Comparator<Resultater>() {
+        @Override
+        public int compare(Resultater o1, Resultater o2) {
+            return o1.result - o2.result;
 
+    }*/
 
     @Override
     public String toString() {
@@ -70,4 +74,10 @@ public class Resultater {
 
 
 
+
+    @Override
+    public int compareTo(Resultater o) {
+
+        return (int) (this.result -  (o.getResult()));
+    }
 }

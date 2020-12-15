@@ -74,10 +74,25 @@ eksportData.saveResult(resultater);
 
     public void bedsteTræningsResultat() throws SQLException {
         ImportData importData = new ImportData();
-        List <Resultater> resultaterList = importData.fillListWithResults();
-//Collections.sort(resultaterList);
+        List <Resultater> resultaterListCrawl = importData.fillListWithResults(1);
+        List <Resultater> resultaterListRyg = importData.fillListWithResults(2);
+        List <Resultater> resultaterListBryst = importData.fillListWithResults(3);
+        List <Resultater> resultaterListFly = importData.fillListWithResults(4);
+traenerMenu.printTræningsResultatMenu();
+        int resultChoice = scanner.nextInt();
+        if (resultChoice == 1){
+            System.out.println(resultaterListCrawl);
+        } else if (resultChoice == 2){
+            System.out.println(resultaterListRyg);
+        } else if (resultChoice == 3){
+            System.out.println(resultaterListBryst);
+        }else if (resultChoice == 4){
+            System.out.println(resultaterListFly);
+        }else{
+            System.out.println("Vælg et gyldigt nummer");
+            bedsteTræningsResultat();
+        }
 
-        System.out.println(resultaterList);
     }
 
     public void tilføjKonkurrenceResultat() {

@@ -4,7 +4,10 @@ import Domain.Medlem;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import Connection.JDBCConnector;
 import Domain.Resultater;
 
@@ -38,26 +41,29 @@ int lappeLøsning = 0;
         return medlemList;
     }
 
-    public List <Resultater>  fillListWithResults() throws SQLException {
+    public List <Resultater>  fillListWithResults(int styldId) throws SQLException {
         List <Resultater> resultaterList = new ArrayList<>();
         Statement statement = null;
         ResultSet resultSet = null;
-        String sql = "SELECT * from delfin.results;";
+        String sql = "SELECT * from delfin.results WHERE stilart_id = " + styldId +";";
         Connection connection = JDBCConnector.getConnection();
         statement = connection.createStatement();
         resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
-            int result_id = resultSet.getInt("result_id");
+            int result_id = resultSet.getInt("result_id"); //bliver ikke brugt (ik vigtigt)
             int medlem_id = resultSet.getInt("medlem_id");
             int stilart_id = resultSet.getInt("stilart_id");
-            int result = resultSet.getInt("result");
+            long result = resultSet.getLong("result");
             Timestamp time = resultSet.getTimestamp("time");
             //int medlem_id, int stilart_id, int result, Timestamp result_time
-            resultater = new Resultater(medlem_id,stilart_id,result_id,time);
+
+            long resultToMinutes = TimeUnit.MILLISECONDS.toMinutes(result);
+            resultater = new Resultater(medlem_id,stilart_id,result,time);
             resultaterList.add(resultater);
 
         }
+        Collections.sort(resultaterList);
         return resultaterList;
     }
 
