@@ -29,6 +29,7 @@ public class MainController {
                 traenerLogin.login();
             } else {
                 System.out.println("Vælg et gyldigt tal");
+                runProgram();
             }
         }
     }

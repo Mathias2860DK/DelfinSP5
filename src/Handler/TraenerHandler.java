@@ -10,8 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import Connection.JDBCConnector;
@@ -22,7 +20,7 @@ Scanner scanner = new Scanner(System.in);
 
 public void tildelStilartSQL(int stilartID, int medlemID) throws SQLException {
     Connection connection = JDBCConnector.getConnection();
-    String sql = "UPDATE delfin.medlem SET stilart_id = "+ stilartID + " WHERE (medlem_id = " + medlemID + ");";
+    String sql = "INSERT INTO delfin.link_medlem_stilart (medlem_id, stilart_id) VALUES ('" + medlemID + "', '" + stilartID +"');";
     PreparedStatement preparedStatement = connection.prepareStatement(sql);
     preparedStatement.executeUpdate();
 }
@@ -51,7 +49,7 @@ int medlem_id = 0;
 int stilart_id = 0;
 int milisekunder = 0;
 //2016-11-16 06:43:19.77
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis()+32400000); //32 400 000 for at få det til dansk tid.
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis()); //32 400 000 for at få det til dansk tid.
         System.out.println("Tilføjer nu et resultat: ");
         System.out.println("Vælg medlem id: ");
         medlem_id = scanner.nextInt();
@@ -74,10 +72,12 @@ eksportData.saveResult(resultater);
 
     public void bedsteTræningsResultat() throws SQLException {
         ImportData importData = new ImportData();
+        //adder resultater til liste med stilart_id som arguement til at printe lister fra de forskellige dicipliner.
         List <Resultater> resultaterListCrawl = importData.fillListWithResults(1);
         List <Resultater> resultaterListRyg = importData.fillListWithResults(2);
         List <Resultater> resultaterListBryst = importData.fillListWithResults(3);
         List <Resultater> resultaterListFly = importData.fillListWithResults(4);
+
 traenerMenu.printTræningsResultatMenu();
         int resultChoice = scanner.nextInt();
         if (resultChoice == 1){
@@ -96,6 +96,7 @@ traenerMenu.printTræningsResultatMenu();
     }
 
     public void tilføjKonkurrenceResultat() {
+    //Kommer senere
     }
 }
 

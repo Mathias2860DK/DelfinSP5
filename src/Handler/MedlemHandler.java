@@ -10,7 +10,7 @@ import Exeptions.NoSuchMedlemExeption;
 
 public class MedlemHandler {
 
-
+//Vi bruger ikke denne metode
     public Medlem getMedlemById(int id) throws SQLException, NoSuchMedlemExeption {
         Medlem retVal = null;
         Connection connection = JDBCConnector.getConnection();

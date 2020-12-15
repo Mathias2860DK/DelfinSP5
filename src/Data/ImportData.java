@@ -45,7 +45,8 @@ int lappeLøsning = 0;
         List <Resultater> resultaterList = new ArrayList<>();
         Statement statement = null;
         ResultSet resultSet = null;
-        String sql = "SELECT * from delfin.results WHERE stilart_id = " + styldId +";";
+        String sql = "SELECT * from delfin.results WHERE stilart_id = " + styldId +";"; //smider stilart_id med, så vi
+        //kan sotere når vi har bedste resultat i de forskellige dicipliner
         Connection connection = JDBCConnector.getConnection();
         statement = connection.createStatement();
         resultSet = statement.executeQuery(sql);
@@ -63,7 +64,7 @@ int lappeLøsning = 0;
             resultaterList.add(resultater);
 
         }
-        Collections.sort(resultaterList);
+        Collections.sort(resultaterList); //soterer efter metode vi har overridet i i Resultater (compareTo)
         return resultaterList;
     }
 

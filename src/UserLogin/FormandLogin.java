@@ -24,7 +24,6 @@ String password = "";
 
         if (username.equals(correctUsername) && password.equals(correctPassword)){
             formandController.runProgram();
-            System.out.println("vi kom ind");
         } else {
             System.out.println("Forkert username eller password");
         }
